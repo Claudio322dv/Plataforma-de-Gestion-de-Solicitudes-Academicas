@@ -1,11 +1,14 @@
 
+require('dotenv').config();
+
 const express = require('express');
 const conectarDB = require('./database');
 const solicitudesRoutes = require('./routes/solicitudes.routes');
 const authRoutes = require('./routes/auth.routes');
+
 const app = express();
-const PORT = 3000;
-require('dotenv').config();
+const PORT = process.env.PORT || 3000;
+
 // Middleware para interpretar solicitudes JSON
 app.use(express.json());
 
@@ -19,6 +22,9 @@ app.get('/', (req, res) => {
 
 // Rutas del CRUD de solicitudes
 app.use('/api/solicitudes', solicitudesRoutes);
+
+// Rutas de autenticacion (Login y JWT)
+app.use('/api/auth', authRoutes);
 
 // Middleware para rutas inexistentes
 app.use((req, res) => {
