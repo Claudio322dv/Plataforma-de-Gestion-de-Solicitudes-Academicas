@@ -2,10 +2,10 @@
 const express = require('express');
 const conectarDB = require('./database');
 const solicitudesRoutes = require('./routes/solicitudes.routes');
-
+const authRoutes = require('./routes/auth.routes');
 const app = express();
 const PORT = 3000;
-
+require('dotenv').config();
 // Middleware para interpretar solicitudes JSON
 app.use(express.json());
 
